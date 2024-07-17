@@ -1,31 +1,50 @@
 {
   "name": "screenshot-basic",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "author": "",
+  "version": "2.0.0",
   "license": "MIT",
+  "description": "",
+  "type": "module",
+  "scripts": {
+    "web:dev": "cd src/web && vite dev",
+    "build": "node scripts/build.js --mode=production",
+    "watch": "node scripts/build.js",
+    "prettier": "prettier ./src/**/*.ts --write"
+  },
+  "devDependencies": {
+    "@citizenfx/client": "latest",
+    "@citizenfx/server": "latest",
+    "@types/formidable": "^3.4.5",
+    "@types/koa": "^2.15.0",
+    "@types/koa__router": "^12.0.4",
+    "@types/mv": "^2.1.4",
+    "@types/node": "^20.14.11",
+    "@types/uuid": "^10.0.0",
+    "@typescript-eslint/eslint-plugin": "^7.16.1",
+    "@typescript-eslint/parser": "^7.16.1",
+    "esbuild": "^0.21.5",
+    "eslint": "^8.57.0",
+    "prettier": "^3.3.3",
+    "typescript": "^5.5.3",
+    "vite": "^5.3.4"
+  },
   "dependencies": {
-    "@citizenfx/client": "^1.0.3404-1",
     "@citizenfx/http-wrapper": "^0.2.2",
-    "@citizenfx/server": "^1.0.3404-1",
     "@citizenfx/three": "^0.100.0",
-    "@types/koa": "^2.11.6",
-    "@types/koa-router": "^7.4.1",
-    "@types/mv": "^2.1.0",
-    "@types/uuid": "^8.3.0",
-    "html-webpack-inline-source-plugin": "^0.0.10",
-    "html-webpack-plugin": "^3.2.0",
-    "koa": "^2.6.2",
-    "koa-body": "^4.0.6",
-    "koa-router": "^7.4.0",
+    "@koa/router": "^12.0.1",
+    "@nativewrappers/fivem": "0.0.28",
+    "koa": "^2.15.3",
+    "koa-body": "^6.0.1",
     "mv": "^2.1.1",
-    "ts-loader": "^5.3.3",
-    "typescript": "3.2.2",
-    "uuid": "^3.3.2",
-    "webpack": "4.28.4"
+    "uuid": "^10.0.0"
+  },
+  "pnpm": {
+    "patchedDependencies": {
+      "koa-body@6.0.1": "patches/koa-body@6.0.1.patch"
+    },
+    "overrides": {
+      "@types/formidable": "^3.4.4",
+      "formidable": "^3.5.1"
+    }
   }
 }

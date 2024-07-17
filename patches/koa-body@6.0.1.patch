@@ -1,0 +1,47 @@
+diff --git a/lib/utils/parse-with-formidable.js b/lib/utils/parse-with-formidable.js
+index 16bcce4047830eb5931f5785c41eb05f9b943b98..908d5369d56a8c199825f0043237427ae30b6767 100644
+--- a/lib/utils/parse-with-formidable.js
++++ b/lib/utils/parse-with-formidable.js
+@@ -4,21 +4,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
+ };
+ Object.defineProperty(exports, "__esModule", { value: true });
+ const formidable_1 = __importDefault(require("formidable"));
+-function parseWithFormidable(ctx, options) {
++async function parseWithFormidable(ctx, options) {
+     const { onFileBegin, ...directOptions } = options;
+     const form = (0, formidable_1.default)({ multiples: true, ...directOptions });
+     if (onFileBegin) {
+         form.on('fileBegin', onFileBegin);
+     }
+-    return new Promise((resolve, reject) => {
+-        form.parse(ctx.req, (error, fields, files) => {
+-            if (error) {
+-                reject(error);
+-                return;
+-            }
+-            resolve({ fields, files });
+-        });
+-    });
++    const [fields, files] = await form.parse(ctx.req);
++    return { fields, files };
+ }
+ exports.default = parseWithFormidable;
+ //# sourceMappingURL=parse-with-formidable.js.map
+\ No newline at end of file
+diff --git a/package.json b/package.json
+index 781b13c2a1c7fcaca973c0556ced2d31874b03f5..c6c3873956b16ef97403c722062c1c70201b37ba 100644
+--- a/package.json
++++ b/package.json
+@@ -41,10 +41,10 @@
+   ],
+   "dependencies": {
+     "@types/co-body": "^6.1.0",
+-    "@types/formidable": "^2.0.5",
++    "@types/formidable": "^3.4.4",
+     "@types/koa": "^2.13.5",
+     "co-body": "^6.1.0",
+-    "formidable": "^2.0.1",
++    "formidable": "^3.5.1",
+     "zod": "^3.19.1"
+   },
+   "devDependencies": {

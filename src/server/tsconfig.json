@@ -1,20 +1,8 @@
 {
-    "compilerOptions": {
-        "baseUrl": ".",
-        "paths": { "*": ["types/*"] },
-        "outDir": "./",
-        "noImplicitAny": false,
-        "module": "es6",
-        "target": "es6",
-        "allowJs": true,
-        "lib": ["es2017"],
-        "types": ["@citizenfx/server", "@citizenfx/client", "node"],
-        "moduleResolution": "node"
-    },
-    "include": [
-        "./**/*"
-    ],
-    "exclude": [
-        
-    ]
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "types": ["@types/node", "@citizenfx/server"]
+  },
+  "include": ["./"]
 }
